@@ -1,4 +1,6 @@
 <template>
+  <h2>Задание 5</h2>
+
   <div class="filters">
     <div class="searchPanel">
       <InputGroup>
@@ -64,7 +66,7 @@ const pets = ref();
 const filteredPets = ref();
 onMounted(() => {
   axios(`https://petstore.swagger.io/v2/pet/findByStatus?status=available`).then(res => {
-    res.data.forEach(itm => { itm.id = String(itm.id) })
+    res.data.forEach((itm: any) => { itm.id = String(itm.id) })
     pets.value = res.data
     filteredPets.value = res.data
   });
@@ -98,14 +100,14 @@ const filterPets = () => {
   const condition = createCondition()
 
   if (searchTextValue.value && menuItemsArr.length) {
-    filteredPets.value = pets.value.filter(itm => {
+    filteredPets.value = pets.value.filter((itm: any) => {
       return eval(condition)
     })
   }
   else
     filteredPets.value = pets.value
 }
-const toggle = (event) => {
+const toggle = (event: Event) => {
   menu.value.toggle(event);
 };
 </script>
